@@ -1,12 +1,11 @@
 ﻿using System;
+using System.Linq;
 
-namespace HackerRank30Days
+class Difference
 {
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Hello World!");
-        }
-    }
-}
+    private int[] elements;
+    public int maximumDifference;
+
+    // Add your code here
+
+} // End of Difference Class
