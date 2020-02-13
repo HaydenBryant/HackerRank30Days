@@ -1,32 +1,43 @@
-﻿using System;
+﻿using System.CodeDom.Compiler;
 using System.Collections.Generic;
+using System.Collections;
+using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
+using System.Text;
+using System;
 
 class Solution
 {
-    static void Main(String[] args)
+
+    // Complete the solve function below.
+    static void solve(double meal_cost, int tip_percent, int tax_percent)
     {
-        int i = 4;
-        double d = 4.0;
-        string s = "HackerRank ";
+        double totalCost;
+        double tip;
+        double tax;
 
+        tip = meal_cost * tip_percent / 100;
+        tax = meal_cost * tax_percent / 100;
 
-        // Declare second integer, double, and String variables.
-        int numInt;
-        double numDbl;
-        string inputStr;
-        // Read and save an integer, double, and String to your variables.
-        numInt = Convert.ToInt32(Console.ReadLine());
-        numDbl = Convert.ToDouble(Console.ReadLine());
-        inputStr = Console.ReadLine();
+        totalCost = meal_cost + tip + tax;
 
-        // Print the sum of both integer variables on a new line.
-        Console.WriteLine(numInt + i);
-        // Print the sum of the double variables on a new line.
-        Console.WriteLine(string.Format("{0:0.0}", numDbl + d));
-        // Concatenate and print the String variables on a new line
-        // The 's' variable above should be printed first.
-        Console.WriteLine(s + inputStr);
+        Console.WriteLine(Math.Round(totalCost));
+    }
 
+    static void Main(string[] args)
+    {
+        double meal_cost = Convert.ToDouble(Console.ReadLine());
+
+        int tip_percent = Convert.ToInt32(Console.ReadLine());
+
+        int tax_percent = Convert.ToInt32(Console.ReadLine());
+
+        solve(meal_cost, tip_percent, tax_percent);
     }
 }
