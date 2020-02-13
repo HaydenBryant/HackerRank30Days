@@ -15,29 +15,30 @@ using System;
 class Solution
 {
 
-    // Complete the solve function below.
-    static void solve(double meal_cost, int tip_percent, int tax_percent)
-    {
-        double totalCost;
-        double tip;
-        double tax;
 
-        tip = meal_cost * tip_percent / 100;
-        tax = meal_cost * tax_percent / 100;
-
-        totalCost = meal_cost + tip + tax;
-
-        Console.WriteLine(Math.Round(totalCost));
-    }
 
     static void Main(string[] args)
     {
-        double meal_cost = Convert.ToDouble(Console.ReadLine());
+        int N = Convert.ToInt32(Console.ReadLine());
 
-        int tip_percent = Convert.ToInt32(Console.ReadLine());
-
-        int tax_percent = Convert.ToInt32(Console.ReadLine());
-
-        solve(meal_cost, tip_percent, tax_percent);
+        if (N % 2 == 0)
+        {
+            if (N >= 2 && N <= 5)
+            {
+                Console.WriteLine("Not Weird");
+            }
+            if (N >= 6 && N <= 20)
+            {
+                Console.WriteLine("Weird");
+            }
+            if (N > 20)
+            {
+                Console.WriteLine("Not Weird");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Weird");
+        }
     }
 }
