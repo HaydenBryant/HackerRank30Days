@@ -1,29 +1,42 @@
-﻿using System.CodeDom.Compiler;
+﻿using System;
 using System.Collections.Generic;
-using System.Collections;
-using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.Serialization;
-using System.Text.RegularExpressions;
-using System.Text;
-using System;
 
 class Solution
 {
-
-
-
-    static void Main(string[] args)
+    static void Main(String[] args)
     {
-        int n = Convert.ToInt32(Console.ReadLine());
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution */
+        int wordsCount = Convert.ToInt32(Console.ReadLine());
 
-        for (int i = 1; i <= 10; i++)
+        for (int i = wordsCount; i > 0; i--)
         {
-            Console.WriteLine("{0} x {1} = {2}", n, i, (n * i));
+            List<char> oddList = new List<char>();
+            List<char> evenList = new List<char>();
+
+            string userInput = Console.ReadLine();
+            for (int j = 0; j < userInput.Length; j++)
+            {
+                if (j % 2 == 0)
+                {
+                    evenList.Add(userInput[j]);
+                }
+                else
+                {
+                    oddList.Add(userInput[j]);
+                }
+            }
+            foreach (char letter in evenList)
+            {
+                Console.Write(letter);
+            }
+            Console.Write(" ");
+            foreach (char letter in oddList)
+            {
+                Console.Write(letter);
+            }
+            Console.WriteLine();
         }
     }
 }
+
