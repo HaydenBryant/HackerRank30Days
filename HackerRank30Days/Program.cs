@@ -1,32 +1,39 @@
-﻿using System.CodeDom.Compiler;
+﻿using System;
 using System.Collections.Generic;
-using System.Collections;
-using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.Serialization;
-using System.Text.RegularExpressions;
-using System.Text;
-using System;
-
 class Solution
 {
-
-
-
-    static void Main(string[] args)
+    static void Main(String[] args)
     {
-        int n = Convert.ToInt32(Console.ReadLine());
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution */
+        int inputTimes = Convert.ToInt32(Console.ReadLine());
+        var phoneBook = new Dictionary<string, int>();
 
-        int[] arr = Array.ConvertAll(Console.ReadLine().Split(' '), arrTemp => Convert.ToInt32(arrTemp))
-        ;
+        for (int i = 0; i < inputTimes; i++)
+        {
+            var directInput = Console.ReadLine();
 
-        Array.Reverse(arr);
+            var inputArr = directInput.Split(' ');
 
-        foreach (int num in arr)
-            Console.Write("{0} ", num);
+            phoneBook.Add(inputArr[0], Convert.ToInt32(inputArr[1]));
+        }
+
+        while (true)
+        {
+            var input = Console.ReadLine();
+            if (String.IsNullOrEmpty(input))
+            {
+                break;
+            }
+            if (phoneBook.ContainsKey(input))
+            {
+                Console.WriteLine("{0}={1}", input, phoneBook[input]);
+            }
+            else
+            {
+                Console.WriteLine("Not found");
+            }
+        }
     }
 }
+
