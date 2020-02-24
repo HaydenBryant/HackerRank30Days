@@ -1,39 +1,33 @@
-﻿using System.CodeDom.Compiler;
-using System.Collections.Generic;
-using System.Collections;
-using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.Serialization;
-using System.Text.RegularExpressions;
-using System.Text;
-using System;
+﻿using System;
+public interface AdvancedArithmetic
+{
+    int divisorSum(int n);
+}
+
+public class Calculator : AdvancedArithmetic
+{
+
+    public int divisorSum(int n)
+    {
+        int sum = 0;
+
+        for (int i = 1; i <= n; i++)
+        {
+            if (n % i == 0)
+                sum += i;
+        }
+
+        return sum;
+    }
+}
 
 class Solution
 {
-
-    // Complete the factorial function below.
-    static int factorial(int n)
-    {
-        if (n == 1) return 1;
-
-        return n * factorial(n - 1);
-    }
-
     static void Main(string[] args)
     {
-        TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);
-
-        int n = Convert.ToInt32(Console.ReadLine());
-
-        int result = factorial(n);
-
-        textWriter.WriteLine(result);
-
-        textWriter.Flush();
-        textWriter.Close();
+        int n = Int32.Parse(Console.ReadLine());
+        AdvancedArithmetic myCalculator = new Calculator();
+        int sum = myCalculator.divisorSum(n);
+        Console.WriteLine("I implemented: AdvancedArithmetic\n" + sum);
     }
 }
