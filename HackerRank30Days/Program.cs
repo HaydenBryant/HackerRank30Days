@@ -1,33 +1,46 @@
-﻿using System;
-public interface AdvancedArithmetic
-{
-    int divisorSum(int n);
-}
-
-public class Calculator : AdvancedArithmetic
-{
-
-    public int divisorSum(int n)
-    {
-        int sum = 0;
-
-        for (int i = 1; i <= n; i++)
-        {
-            if (n % i == 0)
-                sum += i;
-        }
-
-        return sum;
-    }
-}
+﻿using System.CodeDom.Compiler;
+using System.Collections.Generic;
+using System.Collections;
+using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
+using System.Text;
+using System;
 
 class Solution
 {
+
+
+
     static void Main(string[] args)
     {
-        int n = Int32.Parse(Console.ReadLine());
-        AdvancedArithmetic myCalculator = new Calculator();
-        int sum = myCalculator.divisorSum(n);
-        Console.WriteLine("I implemented: AdvancedArithmetic\n" + sum);
+        int n = Convert.ToInt32(Console.ReadLine());
+        string binary = Convert.ToString(n, 2);
+
+        int count = 0;
+        int max = 0;
+
+        for (int i = 0; i < binary.Length; i++)
+        {
+            if (binary[i] == '1')
+            {
+                count++;
+            }
+            if (count > max)
+            {
+                max = count;
+            }
+            if (binary[i] != '1')
+            {
+                count = 0;
+            }
+        }
+
+        Console.WriteLine(max);
     }
 }
