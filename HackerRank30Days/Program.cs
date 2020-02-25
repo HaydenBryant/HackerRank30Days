@@ -31,13 +31,13 @@ class Solution
             {
                 count++;
             }
+            else
+            {
+                count = 0;
+            }
             if (count > max)
             {
                 max = count;
-            }
-            if (binary[i] != '1')
-            {
-                count = 0;
             }
         }
 
