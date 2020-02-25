@@ -1,46 +1,44 @@
-﻿using System.CodeDom.Compiler;
-using System.Collections.Generic;
-using System.Collections;
-using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.Serialization;
-using System.Text.RegularExpressions;
-using System.Text;
-using System;
+﻿using System;
 
-class Solution
+namespace day11Test
 {
-
-
-
-    static void Main(string[] args)
+    class Program
     {
-        int n = Convert.ToInt32(Console.ReadLine());
-        string binary = Convert.ToString(n, 2);
-
-        int count = 0;
-        int max = 0;
-
-        for (int i = 0; i < binary.Length; i++)
+        static void Main(string[] args)
         {
-            if (binary[i] == '1')
-            {
-                count++;
-            }
-            else
-            {
-                count = 0;
-            }
-            if (count > max)
-            {
-                max = count;
-            }
+            //int[,] arr = new int[,] { { 1, 1, 1, 0, 0, 0 }, { 0, 1, 0, 0, 0, 0 }, { 1, 1, 1, 0, 0, 0 },
+            //    { 0, 0, 2, 4, 4, 0 }, {0, 0, 0, 2, 0, 0 }, { 0, 0 , 1, 2, 4, 0 } };
+
+            int[,] arr = new int[,] { { 1, 1, 1, 2 }, { 0, 1, 0, 0 }, { 1, 1, 1, 2 } };
+
+            int sum = HourglassSum(arr);
+            Console.WriteLine(sum);
         }
 
-        Console.WriteLine(max);
+        public static int[,] FindHourglass(int[,] arr)
+        {
+
+        }
+
+        public static int HourglassSum(int[,] hourglassArr)
+        {
+            int sum = 0;
+
+            for (int i = 0; i < 3; i++)
+            {
+                if (i == 0 || i == 2)
+                {
+                    for (var j = 0; j < 3; j++)
+                    {
+                        sum += hourglassArr[i, j];
+                    }
+                }
+                else
+                {
+                    sum += hourglassArr[i, 1];
+                }
+            }
+            return sum;
+        }
     }
 }
