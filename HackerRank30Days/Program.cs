@@ -1,33 +1,44 @@
 ﻿using System;
-public interface AdvancedArithmetic
-{
-    int divisorSum(int n);
-}
 
-public class Calculator : AdvancedArithmetic
+namespace day11Test
 {
-
-    public int divisorSum(int n)
+    class Program
     {
-        int sum = 0;
-
-        for (int i = 1; i <= n; i++)
+        static void Main(string[] args)
         {
-            if (n % i == 0)
-                sum += i;
+            //int[,] arr = new int[,] { { 1, 1, 1, 0, 0, 0 }, { 0, 1, 0, 0, 0, 0 }, { 1, 1, 1, 0, 0, 0 },
+            //    { 0, 0, 2, 4, 4, 0 }, {0, 0, 0, 2, 0, 0 }, { 0, 0 , 1, 2, 4, 0 } };
+
+            int[,] arr = new int[,] { { 1, 1, 1, 2 }, { 0, 1, 0, 0 }, { 1, 1, 1, 2 } };
+
+            int sum = HourglassSum(arr);
+            Console.WriteLine(sum);
         }
 
-        return sum;
-    }
-}
+        public static int[,] FindHourglass(int[,] arr)
+        {
 
-class Solution
-{
-    static void Main(string[] args)
-    {
-        int n = Int32.Parse(Console.ReadLine());
-        AdvancedArithmetic myCalculator = new Calculator();
-        int sum = myCalculator.divisorSum(n);
-        Console.WriteLine("I implemented: AdvancedArithmetic\n" + sum);
+        }
+
+        public static int HourglassSum(int[,] hourglassArr)
+        {
+            int sum = 0;
+
+            for (int i = 0; i < 3; i++)
+            {
+                if (i == 0 || i == 2)
+                {
+                    for (var j = 0; j < 3; j++)
+                    {
+                        sum += hourglassArr[i, j];
+                    }
+                }
+                else
+                {
+                    sum += hourglassArr[i, 1];
+                }
+            }
+            return sum;
+        }
     }
 }
