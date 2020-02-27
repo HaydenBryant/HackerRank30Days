@@ -1,84 +1,35 @@
 ﻿using System;
-using System.Linq;
-
-class Person
+using System.Collections.Generic;
+using System.IO;
+abstract class Book
 {
-    protected string firstName;
-    protected string lastName;
-    protected int id;
 
-    public Person() { }
-    public Person(string firstName, string lastName, int identification)
+    protected String title;
+    protected String author;
+
+    public Book(String t, String a)
     {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.id = identification;
+        title = t;
+        author = a;
     }
-    public void printPerson()
-    {
-        Console.WriteLine("Name: " + lastName + ", " + firstName + "\nID: " + id);
-    }
+    public abstract void display();
+
+
 }
 
-class Student : Person
+//Write MyBook class
+class MyBook : Book
 {
-    private int[] testScores;
-
-    /*	
-    *   Class Constructor
-    *   
-    *   Parameters: 
-    *   firstName - A string denoting the Person's first name.
-    *   lastName - A string denoting the Person's last name.
-    *   id - An integer denoting the Person's ID number.
-    *   scores - An array of integers denoting the Person's test scores.
-    */
-    // Write your constructor here
-    public Student(string firstName, string lastName, int id, int[] scores)
-        : base(firstName, lastName, id)
+    protected int price;
+    public MyBook(string title, string author, int p)
+        : base(title, author)
     {
-
-        this.testScores = scores;
+        price = p;
     }
 
-    /*	
-    *   Method Name: Calculate
-    *   Return: A character denoting the grade.
-    */
-    // Write your method here
-    public char Calculate()
+    public override void display()
     {
-        int scoreTotal = 0;
-        for (int i = 0; i < testScores.Length; i++)
-        {
-            scoreTotal += testScores[i];
-        }
-
-        double score = scoreTotal / testScores.Length;
-        char letterGrade;
-
-        if (score >= 90)
-        {
-            return 'O';
-        }
-        if (score >= 80)
-        {
-            return 'E';
-        }
-        if (score >= 70)
-        {
-            return 'A';
-        }
-        if (score >= 55)
-        {
-            return 'P';
-        }
-        if (score >= 40)
-        {
-            return 'D';
-        }
-
-        return 'T';
+        Console.WriteLine("Title: {0}\nAuthor: {1}\nPrice: {2}", title, author, price);
     }
 }
 
