@@ -1,85 +1,48 @@
 ﻿using System;
 using System.Linq;
 
-class Person
+class Difference
 {
-    protected string firstName;
-    protected string lastName;
-    protected int id;
+    private int[] elements;
+    public int maximumDifference;
 
-    public Person() { }
-    public Person(string firstName, string lastName, int identification)
+    // Add your code here
+    public Difference(int[] elements)
     {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.id = identification;
+        this.elements = elements;
     }
-    public void printPerson()
+
+    public void computeDifference()
     {
-        Console.WriteLine("Name: " + lastName + ", " + firstName + "\nID: " + id);
+        int max = 0;
+        foreach (int num in elements)
+        {
+            foreach (int num2 in elements)
+            {
+                int absoluteValue = Math.Abs(num - num2);
+                if (absoluteValue > max)
+                {
+                    max = absoluteValue;
+                }
+            }
+        }
+        maximumDifference = max;
+    }
+
+} // End of Difference Class
+
+class Solution
+{
+    static void Main(string[] args)
+    {
+        Convert.ToInt32(Console.ReadLine());
+
+        int[] a = Console.ReadLine().Split(' ').Select(x => Convert.ToInt32(x)).ToArray();
+
+        Difference d = new Difference(a);
+
+        d.computeDifference();
+
+        Console.Write(d.maximumDifference);
     }
 }
-
-class Student : Person
-{
-    private int[] testScores;
-
-    /*	
-    *   Class Constructor
-    *   
-    *   Parameters: 
-    *   firstName - A string denoting the Person's first name.
-    *   lastName - A string denoting the Person's last name.
-    *   id - An integer denoting the Person's ID number.
-    *   scores - An array of integers denoting the Person's test scores.
-    */
-    // Write your constructor here
-    public Student(string firstName, string lastName, int id, int[] scores)
-        : base(firstName, lastName, id)
-    {
-
-        this.testScores = scores;
-    }
-
-    /*	
-    *   Method Name: Calculate
-    *   Return: A character denoting the grade.
-    */
-    // Write your method here
-    public char Calculate()
-    {
-        int scoreTotal = 0;
-        for (int i = 0; i < testScores.Length; i++)
-        {
-            scoreTotal += testScores[i];
-        }
-
-        double score = scoreTotal / testScores.Length;
-        char letterGrade;
-
-        if (score >= 90)
-        {
-            return 'O';
-        }
-        if (score >= 80)
-        {
-            return 'E';
-        }
-        if (score >= 70)
-        {
-            return 'A';
-        }
-        if (score >= 55)
-        {
-            return 'P';
-        }
-        if (score >= 40)
-        {
-            return 'D';
-        }
-
-        return 'T';
-    }
-}
-
-class Solution {
