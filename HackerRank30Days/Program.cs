@@ -1,48 +1,56 @@
 ﻿using System;
-using System.Linq;
-
-class Difference
+class Node
 {
-    private int[] elements;
-    public int maximumDifference;
-
-    // Add your code here
-    public Difference(int[] elements)
+    public int data;
+    public Node next;
+    public Node(int d)
     {
-        this.elements = elements;
+        data = d;
+        next = null;
     }
 
-    public void computeDifference()
-    {
-        int max = 0;
-        foreach (int num in elements)
-        {
-            foreach (int num2 in elements)
-            {
-                int absoluteValue = Math.Abs(num - num2);
-                if (absoluteValue > max)
-                {
-                    max = absoluteValue;
-                }
-            }
-        }
-        maximumDifference = max;
-    }
-
-} // End of Difference Class
-
+}
 class Solution
 {
-    static void Main(string[] args)
+
+    public static Node insert(Node head, int data)
     {
-        Convert.ToInt32(Console.ReadLine());
+        //Complete this method
 
-        int[] a = Console.ReadLine().Split(' ').Select(x => Convert.ToInt32(x)).ToArray();
+        if (head == null)
+        {
+            head = new Node(data);
+            return head;
+        }
 
-        Difference d = new Difference(a);
+        Node trav = head;
+        while (trav.next != null)
+        {
+            trav = trav.next;
+        }
+        trav.next = new Node(data);
+        return head;
+    }
 
-        d.computeDifference();
+    public static void display(Node head)
+    {
+        Node start = head;
+        while (start != null)
+        {
+            Console.Write(start.data + " ");
+            start = start.next;
+        }
+    }
+    static void Main(String[] args)
+    {
 
-        Console.Write(d.maximumDifference);
+        Node head = null;
+        int T = Int32.Parse(Console.ReadLine());
+        while (T-- > 0)
+        {
+            int data = Int32.Parse(Console.ReadLine());
+            head = insert(head, data);
+        }
+        display(head);
     }
 }
