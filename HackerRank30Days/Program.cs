@@ -1,56 +1,23 @@
 ﻿using System;
-class Node
-{
-    public int data;
-    public Node next;
-    public Node(int d)
-    {
-        data = d;
-        next = null;
-    }
-
-}
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 class Solution
 {
 
-    public static Node insert(Node head, int data)
-    {
-        //Complete this method
-
-        if (head == null)
-        {
-            head = new Node(data);
-            return head;
-        }
-
-        Node trav = head;
-        while (trav.next != null)
-        {
-            trav = trav.next;
-        }
-        trav.next = new Node(data);
-        return head;
-    }
-
-    public static void display(Node head)
-    {
-        Node start = head;
-        while (start != null)
-        {
-            Console.Write(start.data + " ");
-            start = start.next;
-        }
-    }
     static void Main(String[] args)
     {
+        string S = Console.ReadLine();
 
-        Node head = null;
-        int T = Int32.Parse(Console.ReadLine());
-        while (T-- > 0)
+        try
         {
-            int data = Int32.Parse(Console.ReadLine());
-            head = insert(head, data);
+            int num = Int32.Parse(S);
+            Console.WriteLine(num);
         }
-        display(head);
+        catch
+        {
+            Console.WriteLine("Bad String");
+        }
+
     }
 }
